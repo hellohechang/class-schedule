@@ -31,7 +31,6 @@ req.interceptors.response.use(
       _delData('id');
       router.replace('/login'); //未登录跳转到登录页
     }
-    console.log(router)
     return res.data;
   },
   () => {
