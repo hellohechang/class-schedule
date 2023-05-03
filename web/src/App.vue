@@ -4,20 +4,6 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
-onMounted(() => {
-  let evt = 'onorientationchange' in window ? 'orientationchange' : 'resize';
-  function computed() {
-    let HTML = document.documentElement,
-      devicedW = HTML.clientWidth,
-      designW = 1000,
-      ratio = devicedW / designW * 100;
-    // devicedW >= designW ? ratio = 100 : null;
-    HTML.style.fontSize = ratio + 'px'
-  }
-  computed()
-  window.addEventListener(evt, computed);
-})
 </script>
 
 <style lang="less" scoped>

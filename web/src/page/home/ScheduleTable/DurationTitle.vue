@@ -23,7 +23,7 @@ const props = defineProps({
 })
 const hdRemoveClick = () => {
   MyMessageBox({
-    title: '删除课程时间提示',
+    title: '删除课程时间',
     btnCancelText: '取消',
     btnConfirmText: '删除',
     insert: h('p', '确认要删除此课程时间吗'),
@@ -42,7 +42,7 @@ const hdRemoveClick = () => {
 let durationTitle = ''
 const hdEditClick = () => {
   MyMessageBox({
-    title: '编辑课程时间提示',
+    title: '编辑课程时间',
     btnCancelText: '取消',
     btnConfirmText: '提交',
     insert: h(DurationForm, {
@@ -73,6 +73,7 @@ td {
   color: #856404;
   background-color: #fff3cd;
   overflow: hidden;
+  padding: 5px;
 
   &:hover {
     &>.editBox {
@@ -102,6 +103,7 @@ td {
 
       span {
         cursor: pointer;
+        font-size: 20px;
 
         &:hover {
           color: #000;
@@ -110,14 +112,14 @@ td {
     }
 
     .icon {
-      width: .3rem;
-      line-height: .3rem;
+      width: 30px;
+      line-height: 30px;
       text-align: center;
       position: absolute;
       top: 0;
       right: 0;
       font-style: normal;
-      font-size: .30rem;
+      font-size: 30px;
       z-index: 2;
       cursor: pointer;
 

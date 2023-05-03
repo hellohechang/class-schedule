@@ -53,7 +53,7 @@ tr {
   }
 
   th {
-    padding: .2rem;
+    padding: 20px;
   }
 }
 </style>

@@ -10,14 +10,14 @@ import { onMounted, reactive, watch } from 'vue'
 const props = defineProps({
   title: {
     type: String,
-    default: '00:00 - 00:00'
+    default: '00:00-00:00'
   },
   update: {
     type: Function
   }
 })
 const data = reactive({
-  title: '00:00 - 00:00'
+  title: '00:00-00:00'
 })
 watch(data, () => {
   props.update && props.update(data.title.trim())

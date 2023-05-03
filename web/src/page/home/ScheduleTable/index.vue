@@ -5,7 +5,8 @@
       <tr v-for="item in duration" :key="item.id">
         <DurationTitle :data="item"></DurationTitle>
         <td class="addDuration" v-for="n in 7" :key="n">
-          <Card :data="scheduleObj[`${n}_${item.id}`]" v-if="scheduleObj[`${n}_${item.id}`]"></Card>
+          <Card :week="n" :duration="item" :data="scheduleObj[`${n}_${item.id}`]" v-if="scheduleObj[`${n}_${item.id}`]">
+          </Card>
           <span v-if="!scheduleObj[`${n}_${item.id}`]" @click="hdTdClick(n, item.id)">+</span>
         </td>
       </tr>
@@ -48,7 +49,7 @@ const hdTdClick = (week, durationId) => {
   if (scheduleObj.value[`${week}_${durationId}`]) return
   //新增
   MyMessageBox({
-    title: '新增课程安排提示',
+    title: '新增课程安排',
     btnCancelText: '取消',
     btnConfirmText: '提交',
     insert: h(MyForm, {
@@ -71,10 +72,10 @@ const hdTdClick = (week, durationId) => {
     }
   })
 }
-let durationTitle = '00:00 - 00:00'
+let durationTitle = '00:00-00:00'
 const hdAddClick = () => {
   MyMessageBox({
-    title: '新增课程时间提示',
+    title: '新增课程时间',
     btnCancelText: '取消',
     btnConfirmText: '提交',
     insert: h(DurationForm, {
@@ -174,9 +175,15 @@ onMounted(() => {
 
 <style lang="less" scoped>
 .schedule-table {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
 
   table {
     width: 100%;
+    margin: 0 auto;
+    min-width: 1000px;
+    max-width: 1400px;
     border-collapse: collapse;
     table-layout: fixed;
     border-color: #ccc;
@@ -185,7 +192,7 @@ onMounted(() => {
 
       td {
         word-break: break-all;
-        height: 1.5rem;
+        height: 150px;
         text-align: center;
       }
 
@@ -200,7 +207,7 @@ onMounted(() => {
           cursor: pointer;
           opacity: 0;
           color: #aaa;
-          font-size: .5rem;
+          font-size: 50px;
           transition: .5s;
 
           // &:hover {

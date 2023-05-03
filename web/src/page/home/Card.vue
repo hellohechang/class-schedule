@@ -4,6 +4,7 @@
       <i class="icon" @click.stop="removeCard">&times;</i>
       <div class="edit"><span @click.stop="hdEdit">编辑</span></div>
     </div>
+    <span>{{ duration.title.split('-')[0] }} {{ toChinese(week) }}</span>
     <h1>{{ data.title }}</h1>
     <p>{{ data.describe }}</p>
   </div>
@@ -15,13 +16,23 @@ import { useData } from '../../store/modules/data'
 import MyMessageBox from './MessageBox'
 import MyFormVue from './ScheduleTable/MyForm.vue';
 import { delScheduleReq, editScheduleReq } from '../../api';
+import { toChinese } from '../../utils/common'
 const store = useData()
 const props = defineProps({
-  data: Object
+  data: {
+    type: Object
+  },
+  week: {
+    type: Number
+  },
+  duration: {
+    type: Object
+  }
 })
+console.log(toChinese(props.week))
 const removeCard = () => {
   MyMessageBox({
-    title: '删除课程安排提示',
+    title: '删除课程安排',
     btnCancelText: '取消',
     btnConfirmText: '删除',
     insert: h('p', '确定要删除此课程安排吗'),
@@ -40,7 +51,7 @@ const removeCard = () => {
 let formData = {}
 const hdEdit = () => {
   MyMessageBox({
-    title: '编辑课程安排提示',
+    title: '编辑课程安排',
     btnCancelText: '取消',
     btnConfirmText: '提交',
     insert: h(MyFormVue, {
@@ -75,8 +86,12 @@ div {
   color: #155724;
   background-color: #d4edda;
   flex-flow: column;
-  padding: .1rem;
+  padding: 10px;
   overflow: hidden;
+
+  span {
+    font-size: 12px;
+  }
 
   &:hover {
     &>.editBox {
@@ -107,6 +122,7 @@ div {
 
       span {
         cursor: pointer;
+        font-size: 20px;
 
         &:hover {
           color: #000;
@@ -115,14 +131,14 @@ div {
     }
 
     .icon {
-      width: .3rem;
-      line-height: .3rem;
+      width: 30px;
+      line-height: 30px;
       text-align: center;
       position: absolute;
       top: 0;
       right: 0;
       font-style: normal;
-      font-size: .30rem;
+      font-size: 30px;
       z-index: 2;
       cursor: pointer;
 
@@ -134,12 +150,12 @@ div {
 
   h1 {
     width: 100%;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: .05rem;
+    border-bottom: .01px solid #ccc;
+    padding-bottom: 5px;
   }
 
   p {
-    margin-top: .05rem;
+    margin-top: 5px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
